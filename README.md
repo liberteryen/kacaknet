@@ -18,7 +18,8 @@
 
     ProxyPass / https://127.0.0.1:65535
     ProxyPassReverse / https://127.0.0.1:65535
-</VirtualHost>```
+</VirtualHost>
+```
 
 ```bash
 server {
@@ -55,7 +56,8 @@ server {
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;
     }
-}```
+}
+```
 
 ```bash
 {
@@ -102,7 +104,8 @@ server {
       "tag": "blocked"
     }
   ]
-}```
+}
+```
 
 ```bash
 {
@@ -151,9 +154,12 @@ server {
       }
     }
   ]
-}```
+}
+```
 ```bash
 openssl x509 -noout -fingerprint -sha256 -in cert.pem
-openssl x509 -noout -fingerprint -sha256 -in cert.pem | sed 's/:/|/g'```
+openssl x509 -noout -fingerprint -sha256 -in cert.pem | sed 's/:/|/g'
+```
 ```bash
-openssl req -x509 -newkey rsa:2048 -keyout key.pem -out cert.pem -days 365 -nodes```
+openssl req -x509 -newkey rsa:2048 -keyout key.pem -out cert.pem -days 365 -nodes
+```
