@@ -1,4 +1,5 @@
 ```bash
+#apache
 <VirtualHost *:443>
     ServerName m.youtube.com
 
@@ -22,6 +23,7 @@
 ```
 
 ```bash
+#nginx
 server {
     listen 443 ssl default_server;
     listen [::]:443 ssl default_server;
@@ -60,6 +62,7 @@ server {
 ```
 
 ```bash
+//server1
 {
   "dns": {
     "servers": [
@@ -106,8 +109,66 @@ server {
   ]
 }
 ```
+```bash
+//dokodemodoor
+{
+  "dns": {
+    "servers": [
+      "127.0.0.1"
+    ],
+    "queryStrategy": "UseIPv4"
+  },
+  "log": {
+    "loglevel": "debug"
+  },
+  "inbounds": [
+    {
+      "listen": "127.0.0.1",
+      "port": 10000,
+      "protocol": "vless",
+      "settings": {
+        "clients": [
+          {
+            "id": "x",
+            "flow": ""
+          }
+        ],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+          "path": "/"
+        }
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "protocol": "freedom",
+      "settings": {
+        "domainStrategy": "ForceIPv4",
+        "finalRules": [
+          {
+            "action": "allow",
+            "ip": [
+              "127.0.0.1/32"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "protocol": "blackhole",
+      "tag": "blocked"
+    }
+  ]
+}
+
+```
 
 ```bash
+//client 1
 {
   "log": {
     "loglevel": "debug"
